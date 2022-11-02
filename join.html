@@ -161,8 +161,8 @@
           pw: pwElement.value,
           simpleDesc: simpleDescElement.value,
           profileImg: null,
-          createDate: new Date().toJSON(),
-          updateDate: new Date().toJSON(),
+          createDate: Date.now(),
+          updateDate: Date.now(),
         };
 
         userList.push(user);
