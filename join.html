@@ -129,6 +129,11 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript">
+      window.onload = () => {
+        const idElement = document.getElementById("id");
+        idElement.focus();
+      };
+
       const requestJoin = () => {
         if (!validateFields()) {
           return;
