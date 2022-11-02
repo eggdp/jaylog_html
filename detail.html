@@ -58,48 +58,8 @@
           </form>
           <div>
             <div class="input-group">
-              <button
-                class="rounded-pill btn-dark px-3"
-                type="button"
-                onclick="location.href='./insert-post.html'"
-              >
-                새 글 작성
-              </button>
-              <div class="row align-content-center">
-                <a href="#" role="button" data-bs-toggle="dropdown">
-                  <img src="./img/user.png" width="25" />
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="d-inline d-md-none">
-                    <form class="d-flex ms-1">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="search"
-                      />
-                      <button class="btn" type="button">
-                        <img src="./img/search.png" width="20" />
-                      </button>
-                    </form>
-                  </li>
-                  <li class="d-inline d-md-none">
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">내 정보</a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
-                </ul>
-              </div>
+              <div id="insertPost"></div>
+              <div id="profile"></div>
             </div>
           </div>
         </div>
@@ -150,6 +110,63 @@
       <div id="viewer" class="my-5"></div>
     </div>
     <script>
+      window.onload = () => {
+        const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+        if (loginUser == null) {
+          document.getElementById("insertPost").innerHTML = `
+          <button
+            class="rounded-pill btn-dark px-3"
+            type="button"
+            onclick="location.href='./login.html'"
+          >
+            로그인
+          </button>
+        `;
+        } else {
+          document.getElementById("insertPost").innerHTML = `
+          <button
+            class="rounded-pill btn-dark px-3"
+            type="button"
+            onclick="location.href='./insert-post.html'"
+          >
+            새 글 작성
+          </button>
+        `;
+
+          document.getElementById("profile").innerHTML = `
+          <div class="row align-content-center ms-1">
+            <a href="#" role="button" data-bs-toggle="dropdown">
+              <img src="./img/user.png" width="25" />
+            </a>
+            <ul class="dropdown-menu">
+              <li class="d-inline d-md-none">
+                <form class="d-flex ms-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="search"
+                  />
+                  <button class="btn" type="button">
+                    <img src="./img/search.png" width="20" />
+                  </button>
+                </form>
+              </li>
+              <li class="d-inline d-md-none">
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            </ul>
+          </div>
+        `;
+        }
+      };
+
       const postData = {
         content: `
 # 실수 / 고정소수점 / 부동소수점

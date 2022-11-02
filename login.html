@@ -62,6 +62,7 @@
                     type="password"
                     id="pw"
                     class="form-control form-control-lg"
+                    onkeyup="enterKeyLogin(event)"
                   />
                   <label class="form-label" for="typePasswordX-2">
                     비밀번호
@@ -128,6 +129,12 @@
 
           idElement.value = rememberId;
           rememberMeElement.checked = true;
+        }
+      };
+
+      const enterKeyLogin = (event) => {
+        if (event.keyCode === 13) {
+          requestLogin();
         }
       };
 
