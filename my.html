@@ -130,6 +130,14 @@
       </div>
     </div>
     <script>
+      window.onload = () => {
+        const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+        if (loginUser == null) {
+          alert("로그인이 필요합니다.");
+          location.replace("./login.html");
+        }
+      };
+
       const myPostList = [
         {
           thumbnail:
