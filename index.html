@@ -124,89 +124,71 @@
       }
     };
 
-    const cardDataList = [
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/velopert/post/043d71d9-5a66-4795-b960-ba7ff9384947/image.png",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: ` 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-      {
-        thumbnail:
-          "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
-        title: `Rxjs 한번 배워보실래요?`,
-        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
-        updateDate: "2021-10-10",
-        writerProfileImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        writer: "jaybon",
-        likeCount: 10,
-      },
-    ];
+    const getCardDataList = () => {
+      const postList = getPostList().sort((a, b) => {
+        return b.idx - a.idx;
+      });
+      const userList = getUserList();
+      const likeList = getLikeList();
+      const cardDataList = [];
+
+      for (let i = 0; i < postList.length; i++) {
+        const post = postList[i];
+        const user = userList.find((user) => user.idx === post.userIdx);
+        if (post.deleteDate != null) continue;
+        if (user.deleteDate != null) continue;
+
+        const cardData = {
+          idx: post.idx,
+          thumbnail: post.thumbnail,
+          title: post.title,
+          summary: post.summary,
+          likeCount: likeList.filter(
+            (tempLike) => tempLike.postIdx === post.idx
+          ).length,
+          createDate: post.createDate.split("T")[0],
+          user: {
+            idx: user.idx,
+            id: user.id,
+            profileImg: user.profileImg,
+          },
+        };
+        cardDataList.push(cardData);
+      }
+
+      return cardDataList;
+    };
+
+    const getPostList = () => {
+      const postList = JSON.parse(localStorage.getItem("postList"));
+      if (postList == null) {
+        return [];
+      } else {
+        return postList;
+      }
+    };
+
+    const getUserList = () => {
+      const userList = JSON.parse(localStorage.getItem("userList"));
+      if (userList == null) {
+        return [];
+      } else {
+        return userList;
+      }
+    };
+
+    const getLikeList = () => {
+      const likeList = JSON.parse(localStorage.getItem("likeList"));
+      if (likeList == null) {
+        return [];
+      } else {
+        return likeList;
+      }
+    };
 
     function setCards() {
       const cardGroup = document.querySelector("#cardGroup");
-      for (const item of cardDataList) {
+      for (const item of getCardDataList()) {
         cardGroup.insertAdjacentHTML(
           "beforeend",
           `
@@ -214,33 +196,40 @@
             <div class="card m-3">
               <div class="card-img-con">
                 <img
-                  src="${item.thumbnail}"
-                  class="card-img-top"
+                  src="${
+                    item.thumbnail == null
+                      ? "./img/no-image.png"
+                      : item.thumbnail
+                  }"
+                  class="card-img-top jaybon-cover-img"
                   alt="..."
                 />
               </div>
               <div class="card-body">
-                <a class="text-decoration-none text-dark" href="./detail.html">
-                  <h5 class="card-title">${item.title}</h5>
+                <a class="text-decoration-none text-dark" 
+                    href="./post.html?idx=${item.idx}">
+                  <h5 class="card-title pb-1 jaybon-one-line">${item.title}</h5>
                 </a>
                 <p class="card-text">
                   ${item.summary}
                 </p>
               </div>
-              <small class="text-muted mx-3 mb-2">마지막 수정일 : ${item.updateDate}</small>
+              <small class="text-muted mx-3 mb-2">${item.createDate}</small>
               <div class="card-footer">
                 <div class="row">
                   <div class="col">
                     <div class="input-group">
-                      <img src="${item.writerProfileImage}"
-                          class="ratio ratio-1x1 rounded-circle me-2" style="width:20px" alt="profile">
-                      <strong>${item.writer}</strong>
+                      <img src="${item.user.profileImg}" width="25"
+                          class="ratio ratio-1x1 rounded-circle me-2" style="width:20px" alt="profile" />
+                      <strong>${item.user.id}</strong>
                     </div>
                   </div>
                   <div class="col-auto">
                     <div class="input-group">
                       <img src="./img/like.svg" width="15" />
-                      <span class="mx-2 fs-6 text-black-50 fw-light">${item.likeCount}</span>
+                      <span class="mx-2 fs-6 text-black-50 fw-light">${
+                        item.likeCount
+                      }</span>
                     </div>
                   </div>
                 </div>

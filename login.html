@@ -157,14 +157,28 @@
           return;
         }
 
-        const user = userList.find(
-          (user) => user.id === idElement.value && user.pw === pwElement.value
-        );
+        const user = userList.find((user) => user.id === idElement.value);
 
         if (user === undefined) {
-          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+          alert("해당 아이디가 존재하지 않습니다.");
+          idElement.value = "";
+          pwElement.value = "";
+          idElement.focus();
+          return;
+        }
+
+        if (user.pw !== pwElement.value) {
+          alert("비밀번호가 일치하지 않습니다.");
           pwElement.value = "";
           pwElement.focus();
+          return;
+        }
+
+        if (user.deleteDate !== null) {
+          alert("탈퇴한 회원입니다.");
+          idElement.value = "";
+          pwElement.value = "";
+          idElement.focus();
           return;
         }
 

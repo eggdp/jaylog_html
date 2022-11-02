@@ -160,9 +160,11 @@
           id: idElement.value,
           pw: pwElement.value,
           simpleDesc: simpleDescElement.value,
-          profileImg: null,
-          createDate: Date.now(),
-          updateDate: Date.now(),
+          profileImg:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+          createDate: new Date().toJSON(),
+          updateDate: new Date().toJSON(),
+          deleteDate: null,
         };
 
         userList.push(user);

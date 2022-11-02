@@ -3,19 +3,19 @@
 <img id="myImg" src="" alt="" />
 
 <script>
-  const input = document.getElementById("myFile");
-  const img = document.getElementById("myImg");
+  // const input = document.getElementById("myFile");
+  // const img = document.getElementById("myImg");
 
-  input.addEventListener("change", function () {
-    if (this.files && this.files[0]) {
-      const myFile = this.files[0];
-      const reader = new FileReader();
+  // input.addEventListener("change", function () {
+  //   if (this.files && this.files[0]) {
+  //     const myFile = this.files[0];
+  //     const reader = new FileReader();
 
-      reader.addEventListener("load", function (e) {
-        img.setAttribute("src", e.target.result);
-      });
+  //     reader.addEventListener("load", function (e) {
+  //       img.setAttribute("src", e.target.result);
+  //     });
 
-      reader.readAsDataURL(myFile);
-    }
-  });
+  //     reader.readAsDataURL(myFile);
+  //   }
+  // });
 </script>

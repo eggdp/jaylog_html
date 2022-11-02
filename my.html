@@ -50,48 +50,8 @@
           </form>
           <div>
             <div class="input-group">
-              <button
-                class="rounded-pill btn-dark px-3"
-                type="button"
-                onclick="location.href='./insert-post.html'"
-              >
-                새 글 작성
-              </button>
-              <div class="row align-content-center">
-                <a href="#" role="button" data-bs-toggle="dropdown">
-                  <img src="./img/user.png" width="25" />
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="d-inline d-md-none">
-                    <form class="d-flex ms-1">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="search"
-                      />
-                      <button class="btn" type="button">
-                        <img src="./img/search.png" width="20" />
-                      </button>
-                    </form>
-                  </li>
-                  <li class="d-inline d-md-none">
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">내 정보</a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
-                </ul>
-              </div>
+              <div id="insertPost"></div>
+              <div id="profile"></div>
             </div>
           </div>
         </div>
@@ -135,6 +95,48 @@
         if (loginUser == null) {
           alert("로그인이 필요합니다.");
           location.replace("./login.html");
+        } else {
+          document.getElementById("insertPost").innerHTML = `
+          <button
+            class="rounded-pill btn-dark px-3"
+            type="button"
+            onclick="location.href='./insert-post.html'"
+          >
+            새 글 작성
+          </button>
+        `;
+
+          document.getElementById("profile").innerHTML = `
+          <div class="row align-content-center ms-1">
+            <a href="#" role="button" data-bs-toggle="dropdown">
+              <img src="./img/user.png" width="25" />
+            </a>
+            <ul class="dropdown-menu">
+              <li class="d-inline d-md-none">
+                <form class="d-flex ms-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="search"
+                  />
+                  <button class="btn" type="button">
+                    <img src="./img/search.png" width="20" />
+                  </button>
+                </form>
+              </li>
+              <li class="d-inline d-md-none">
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            </ul>
+          </div>
+        `;
         }
       };
 
@@ -232,13 +234,13 @@
               <div class="card-img-con">
                 <img
                   src="${item.thumbnail}"
-                  class="card-img-top"
+                  class="card-img-top jaybon-cover-img"
                   alt="..."
                 />
               </div>
               <div class="card-body">
                 <a class="text-decoration-none text-dark" href="./detail.html">
-                  <h5 class="card-title">${item.title}</h5>
+                  <h5 class="card-title pb-1 jaybon-one-line">${item.title}</h5>
                 </a>
                 <p class="card-text">
                   ${item.summary}
