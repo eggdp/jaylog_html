@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr" id="my-page">
+<html lang="kr" id="myPage">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,10 +27,16 @@
     <!-- 커스텀 CSS -->
     <link rel="stylesheet" href="./css/style.css" />
 
+    <!-- favicon -->
+    <link rel="icon" href="./img/jaylog.ico" type="image/x-icon" />
+
     <title>마이페이지</title>
   </head>
   <body class="bg-light">
-    <div class="sticky-top" style="background-color: white">
+    <div
+      class="sticky-top shadow"
+      style="background-color: rgba(255, 255, 255, 0.95)"
+    >
       <nav class="navbar">
         <div class="container">
           <a class="navbar-brand fs-3 text-dark" href="./main.html">
@@ -72,9 +78,7 @@
                     <hr class="dropdown-divider" />
                   </li>
                   <li>
-                    <a class="dropdown-item" href="./my-page.html">
-                      내 제이로그
-                    </a>
+                    <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
                   </li>
                   <li>
                     <hr class="dropdown-divider" />
@@ -108,7 +112,9 @@
         <div class="col">
           <h2>jaybon</h2>
           <p>소개 글이 없습니다.</p>
-          <a href="#" style="color: #20c997">내 정보 수정</a>
+          <a href="./change-my-info.html" style="color: #20c997"
+            >내 정보 수정</a
+          >
         </div>
       </div>
       <hr class="border-3 border-top" />

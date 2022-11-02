@@ -1,6 +1,6 @@
 <!-- 상세페이지 -->
 <!DOCTYPE html>
-<html lang="kr" id="detail">
+<html lang="kr" id="detailPage">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,23 +35,27 @@
     />
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 
+    <!-- favicon -->
+    <link rel="icon" href="./img/jaylog.ico" type="image/x-icon" />
+
     <title>상세페이지</title>
   </head>
   <body class="bg-white">
-    <div class="sticky-top" style="background-color: white">
+    <div
+      class="sticky-top shadow"
+      style="background-color: rgba(255, 255, 255, 0.95)"
+    >
       <nav class="navbar">
         <div class="container">
           <a class="navbar-brand fs-3 text-dark" href="./main.html">
             <img src="./img/jaylog.png" style="height: 50px" alt="" />
           </a>
-          <div>
-            <form class="d-none d-sm-none d-md-flex">
-              <input type="text" class="form-control" placeholder="search" />
-              <button class="btn" type="button">
-                <img src="./img/search.png" width="20" />
-              </button>
-            </form>
-          </div>
+          <form class="d-none d-sm-none d-md-flex">
+            <input type="text" class="form-control" placeholder="search" />
+            <button class="btn" type="button">
+              <img src="./img/search.png" width="20" />
+            </button>
+          </form>
           <div>
             <div class="input-group">
               <button
@@ -82,9 +86,7 @@
                     <hr class="dropdown-divider" />
                   </li>
                   <li>
-                    <a class="dropdown-item" href="./my-page.html">
-                      내 제이로그
-                    </a>
+                    <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
                   </li>
                   <li>
                     <hr class="dropdown-divider" />

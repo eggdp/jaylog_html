@@ -1,7 +1,7 @@
 <!-- 참고 사이트 -->
 <!-- https://github.com/mdbootstrap/bootstrap-login-form -->
 <!DOCTYPE html>
-<html id="loginPage" lang="en">
+<html id="changeMyInfoPage" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -26,9 +26,9 @@
 
     <!-- 커스텀 CSS -->
     <link rel="stylesheet" href="./css/style.css" />
-  </head>
 
-  <title>로그인</title>
+    <title>내 정보 수정</title>
+  </head>
 
   <body>
     <!-- Start your project here-->
@@ -38,13 +38,7 @@
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card shadow-2-strong" style="border-radius: 1rem">
               <div class="card-body p-5 text-center">
-                <h3 class="mb-3">
-                  <img
-                    src="./img/jaylog.png"
-                    style="height: 100px"
-                    alt="jaylog"
-                  />
-                </h3>
+                <h3 class="mb-3">내 정보 수정</h3>
 
                 <div class="form-outline mb-4">
                   <input
@@ -52,22 +46,47 @@
                     id="id"
                     class="form-control form-control-lg"
                   />
-                  <label class="form-label" for="id">아이디</label>
+                  <label class="form-label" for="id">* 아이디</label>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="pw"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label" for="typePasswordX-2">
+                        * 비밀번호
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="pw"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label" for="typePasswordX-2">
+                        * 비밀번호 확인
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input
-                    type="password"
-                    id="pw"
+                    type="text"
+                    id="simpleDesc"
                     class="form-control form-control-lg"
                   />
-                  <label class="form-label" for="typePasswordX-2"
-                    >비밀번호</label
-                  >
+                  <label class="form-label" for="simpleDesc">한 줄 소개</label>
                 </div>
 
                 <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-start mb-4">
+                <!-- <div class="form-check d-flex justify-content-start mb-4">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -77,15 +96,15 @@
                   <label class="form-check-label" for="rememberMe"
                     >아이디 기억하기</label
                   >
-                </div>
+                </div> -->
 
                 <button class="btn btn-primary btn-lg btn-block" type="button">
-                  로그인
+                  회원가입
                 </button>
 
-                <hr class="my-4" />
+                <!-- <hr class="my-4" /> -->
 
-                <a href="./join.html">아이디가 없으신가요? 회원가입</a>
+                <!-- <a href="./join.html">아이디가 없으신가요? 회원가입</a> -->
 
                 <!-- <button
                   class="btn btn-lg btn-block btn-primary"

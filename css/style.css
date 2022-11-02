@@ -8,16 +8,16 @@ body > div:first-child {
   margin: 15px 15px;
 } */
 
-#main .card-group .card-img-con,
-#my-page .card-group .card-img-con {
+#mainPage .card-group .card-img-con,
+#myPage .card-group .card-img-con {
   height: 150px;
   overflow: hidden;
 }
 
 /* 말줄임 */
 /* https://code-study.tistory.com/36 */
-#main .card-group .card-text,
-#my-page .card-group .card-text {
+#mainPage .card-group .card-text,
+#myPage .card-group .card-text {
   display: -webkit-box;
   word-wrap: break-word;
   -webkit-line-clamp: 4;
@@ -25,4 +25,9 @@ body > div:first-child {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 100px;
+}
+
+#joinPage body, 
+#loginPage body {
+  background-color: #508bfc;
 }
