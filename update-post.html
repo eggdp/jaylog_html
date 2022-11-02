@@ -88,14 +88,7 @@
   <script>
     window.onload = () => {
       checkLogin();
-    };
-
-    const checkLogin = () => {
-      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
-      if (loginUser == null) {
-        alert("로그인이 필요합니다.");
-        location.replace("./login.html");
-      }
+      tempCheck();
     };
 
     window.onresize = function () {
@@ -129,7 +122,13 @@
       }
     }
 
-    tempCheck();
+    const checkLogin = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      if (loginUser == null) {
+        alert("로그인이 필요합니다.");
+        location.replace("./login.html");
+      }
+    };
 
     // if (checkImage(markdownEditorElement.value)) {
     //   alert("오우");
