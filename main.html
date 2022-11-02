@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html id="main" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 부트스트랩 링크 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- font awesome 링크 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- 커스텀 CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Jaylog</title>
+  </head>
+  <body class="bg-light">
+    <div class="sticky-top" style="background-color: white">
+      <nav class="navbar">
+        <div class="container">
+          <a class="navbar-brand fs-3 text-dark" href="./main.html"> Jaylog </a>
+          <form class="d-none d-sm-none d-md-flex">
+            <input type="text" class="form-control" placeholder="search" />
+            <button class="btn" type="button">
+              <img src="./img/search.png" width="20" />
+            </button>
+          </form>
+          <div>
+            <div class="input-group">
+              <button
+                class="rounded-pill btn-dark px-3"
+                type="button"
+                onclick="location.href='./insert-post.html'"
+              >
+                새 글 작성
+              </button>
+              <div class="row align-content-center">
+                <a href="#" role="button" data-bs-toggle="dropdown">
+                  <img src="./img/user.png" width="25" />
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="d-inline d-md-none">
+                    <form class="d-flex ms-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="search"
+                      />
+                      <button class="btn" type="button">
+                        <img src="./img/search.png" width="20" />
+                      </button>
+                    </form>
+                  </li>
+                  <li class="d-inline d-md-none">
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="./my-page.html">
+                      내 제이로그
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="./my-page.html">내 정보</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container mt-3">
+      <section
+        id="cardGroup"
+        class="row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 card-group"
+      ></section>
+    </div>
+  </body>
+  <script>
+    const cardDataList = [
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/velopert/post/043d71d9-5a66-4795-b960-ba7ff9384947/image.png",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: ` 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+      {
+        thumbnail:
+          "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
+        title: `Rxjs 한번 배워보실래요?`,
+        summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+        updateDate: "2021-10-10",
+        writerProfileImage:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        writer: "jaybon",
+        likeCount: 10,
+      },
+    ];
+
+    function setCards() {
+      const cardGroup = document.querySelector("#cardGroup");
+      for (const item of cardDataList) {
+        cardGroup.insertAdjacentHTML(
+          "beforeend",
+          `
+          <div class="col">
+            <div class="card m-3">
+              <div class="card-img-con">
+                <img
+                  src="${item.thumbnail}"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body">
+                <a class="text-decoration-none text-dark" href="./detail.html">
+                  <h5 class="card-title">${item.title}</h5>
+                </a>
+                <p class="card-text">
+                  ${item.summary}
+                </p>
+              </div>
+              <small class="text-muted mx-3 mb-2">마지막 수정일 : ${item.updateDate}</small>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col">
+                    <div class="input-group">
+                      <img src="${item.writerProfileImage}"
+                          class="ratio ratio-1x1 rounded-circle me-2" style="width:20px" alt="profile">
+                      <strong>${item.writer}</strong>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="input-group">
+                      <img src="./img/like.svg" width="15" />
+                      <span class="mx-2 fs-6 text-black-50 fw-light">${item.likeCount}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          `
+        );
+      }
+    }
+
+    setCards();
+  </script>
+</html>
