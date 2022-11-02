@@ -66,8 +66,11 @@
   </body>
   <script>
     window.onload = () => {
+      setNav();
       setCards();
+    };
 
+    const setNav = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       if (loginUser == null) {
         document.getElementById("insertPost").innerHTML = `
