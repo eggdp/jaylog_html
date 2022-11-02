@@ -8,7 +8,7 @@ body > div:first-child {
   margin: 15px 15px;
 } */
 
-#mainPage .card-group .card-img-con,
+#indexPage .card-group .card-img-con,
 #myPage .card-group .card-img-con {
   height: 150px;
   overflow: hidden;
@@ -16,7 +16,7 @@ body > div:first-child {
 
 /* 말줄임 */
 /* https://code-study.tistory.com/36 */
-#mainPage .card-group .card-text,
+#indexPage .card-group .card-text,
 #myPage .card-group .card-text {
   display: -webkit-box;
   word-wrap: break-word;
@@ -27,7 +27,7 @@ body > div:first-child {
   height: 100px;
 }
 
-#joinPage body, 
+#joinPage body,
 #loginPage body {
   background-color: #508bfc;
 }

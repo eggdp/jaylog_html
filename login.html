@@ -63,9 +63,9 @@
                     id="pw"
                     class="form-control form-control-lg"
                   />
-                  <label class="form-label" for="typePasswordX-2"
-                    >비밀번호</label
-                  >
+                  <label class="form-label" for="typePasswordX-2">
+                    비밀번호
+                  </label>
                 </div>
 
                 <!-- Checkbox -->
@@ -76,12 +76,16 @@
                     value=""
                     id="rememberMe"
                   />
-                  <label class="form-check-label" for="rememberMe"
-                    >아이디 기억하기</label
-                  >
+                  <label class="form-check-label" for="rememberMe">
+                    아이디 기억하기
+                  </label>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block" type="button">
+                <button
+                  class="btn btn-primary btn-lg btn-block"
+                  type="button"
+                  onclick="requestLogin()"
+                >
                   로그인
                 </button>
 
@@ -114,6 +118,86 @@
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      window.onload = () => {
+        const idElement = document.getElementById("id");
+        idElement.focus();
+        const rememberId = JSON.parse(localStorage.getItem("rememberId"));
+        if (rememberId !== null) {
+          const rememberMeElement = document.getElementById("rememberMe");
+
+          idElement.value = rememberId;
+          rememberMeElement.checked = true;
+        }
+      };
+
+      const requestLogin = () => {
+        if (!validateFields()) {
+          return;
+        }
+
+        const idElement = document.getElementById("id");
+        const pwElement = document.getElementById("pw");
+        const rememberMeElement = document.getElementById("rememberMe");
+
+        const userList = JSON.parse(localStorage.getItem("userList"));
+
+        if (userList === null) {
+          alert("아이디가 존재하지 않습니다.");
+          idElement.value = "";
+          pwElement.value = "";
+          idElement.focus();
+          return;
+        }
+
+        const user = userList.find(
+          (user) => user.id === idElement.value && user.pw === pwElement.value
+        );
+
+        if (user === undefined) {
+          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+          pwElement.value = "";
+          pwElement.focus();
+          return;
+        }
+
+        // 로그인 성공
+
+        if (rememberMeElement.checked) {
+          localStorage.setItem("rememberId", JSON.stringify(user.id));
+        } else {
+          localStorage.removeItem("rememberId");
+        }
+
+        const loginUser = {
+          idx: user.idx,
+          id: user.id,
+          profileImg: user.profileImg,
+        };
+
+        localStorage.setItem("loginUser", JSON.stringify(loginUser));
+
+        location.href = "./index.html";
+      };
+
+      const validateFields = () => {
+        const idElement = document.getElementById("id");
+        const pwElement = document.getElementById("pw");
+
+        if (idElement.value === "") {
+          alert("아이디를 입력해주세요.");
+          idElement.focus();
+          return false;
+        }
+
+        if (pwElement.value === "") {
+          alert("비밀번호를 입력해주세요.");
+          pwElement.focus();
+          return false;
+        }
+
+        return true;
+      };
+    </script>
   </body>
 </html>

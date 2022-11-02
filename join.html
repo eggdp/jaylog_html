@@ -65,19 +65,17 @@
                         id="pw"
                         class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typePasswordX-2">
-                        * 비밀번호
-                      </label>
+                      <label class="form-label" for="pw"> * 비밀번호 </label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-outline mb-4">
                       <input
                         type="password"
-                        id="pw"
+                        id="pw2"
                         class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typePasswordX-2">
+                      <label class="form-label" for="pw2">
                         * 비밀번호 확인
                       </label>
                     </div>
@@ -93,20 +91,11 @@
                   <label class="form-label" for="simpleDesc">한 줄 소개</label>
                 </div>
 
-                <!-- Checkbox -->
-                <!-- <div class="form-check d-flex justify-content-start mb-4">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="rememberMe"
-                  />
-                  <label class="form-check-label" for="rememberMe"
-                    >아이디 기억하기</label
-                  >
-                </div> -->
-
-                <button class="btn btn-primary btn-lg btn-block" type="button">
+                <button
+                  class="btn btn-primary btn-lg btn-block"
+                  type="button"
+                  onclick="requestJoin()"
+                >
                   회원가입
                 </button>
 
@@ -139,6 +128,97 @@
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      const requestJoin = () => {
+        if (!validateFields()) {
+          return;
+        }
+
+        if (localStorage.getItem("userList") === null) {
+          localStorage.setItem("userList", JSON.stringify([]));
+        }
+
+        const userList = JSON.parse(localStorage.getItem("userList"));
+
+        const idElement = document.getElementById("id");
+        const pwElement = document.getElementById("pw");
+        const simpleDescElement = document.getElementById("simpleDesc");
+
+        if (userList.find((user) => user.id === idElement.value)) {
+          alert("이미 존재하는 아이디입니다.");
+          idElement.focus();
+          return;
+        }
+
+        const user = {
+          idx: userList.length + 1,
+          id: idElement.value,
+          pw: pwElement.value,
+          simpleDesc: simpleDescElement.value,
+          profileImg: null,
+          createDate: new Date().toJSON(),
+          updateDate: new Date().toJSON(),
+        };
+
+        userList.push(user);
+
+        localStorage.setItem("userList", JSON.stringify(userList));
+
+        alert("회원가입이 완료되었습니다.");
+
+        location.href = "./login.html";
+      };
+
+      const validateFields = () => {
+        const idElement = document.getElementById("id");
+        const pwElement = document.getElementById("pw");
+        const pw2Element = document.getElementById("pw2");
+        const simpleDescElement = document.getElementById("simpleDesc");
+
+        if (idElement.value === "") {
+          alert("아이디를 입력해주세요.");
+          idElement.focus();
+          return false;
+        }
+
+        if (pwElement.value === "") {
+          alert("비밀번호를 입력해주세요.");
+          pwElement.focus();
+          return false;
+        }
+
+        if (pw2Element.value === "") {
+          alert("비밀번호 확인을 입력해주세요.");
+          pw2Element.focus();
+          return false;
+        }
+
+        if (pwElement.value !== pw2Element.value) {
+          alert("비밀번호가 일치하지 않습니다.");
+          pw2Element.focus();
+          return false;
+        }
+
+        return true;
+      };
+
+      //   fetch("/api/login", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(data),
+      //   })
+      //     .then((res) => res.json())
+      //     .then((res) => {
+      //       if (res.success) {
+      //         alert("로그인 성공");
+      //         location.href = "/";
+      //       } else {
+      //         alert("로그인 실패");
+      //       }
+      //     });
+      // };
+    </script>
   </body>
 </html>
