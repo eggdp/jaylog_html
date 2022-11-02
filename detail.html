@@ -114,32 +114,70 @@
               style="width: 20px"
               alt="profile"
             />
-            <strong>jaylog</strong>
+            <strong>jaybon</strong>
           </span>
           <!-- 업로드 날짜 -->
           <span class="text-black-50 fw-light ms-3">2022-10-29</span>
         </div>
+        <!-- 좋아요 버튼 -->
+        <button class="btn">
+          <img src="./img/like.svg" width="15" />
+          <span class="mx-2 fs-6 text-black-50 fw-light">1</span>
+        </button>
         <!-- 수정 / 삭제 버튼 -->
         <div>
-          <button class="btn btn-outline-success" type="button">수정</button>
-          <button class="btn btn-outline-danger" type="button">삭제</button>
+          <button
+            class="btn btn-outline-success"
+            type="button"
+            onclick="alert(`수정페이지로 이동`)"
+          >
+            수정
+          </button>
+          <button
+            class="btn btn-outline-danger"
+            type="button"
+            onclick="prompt(`삭제하려면 '삭제'를 입력하세요.`) === '삭제' ? alert('삭제되었습니다.') : alert('삭제가 취소되었습니다.')"
+          >
+            삭제
+          </button>
         </div>
       </div>
       <!-- 본문 -->
       <div id="viewer" class="my-5"></div>
-      <!-- 좋아요 버튼 -->
-      <button class="btn">
-        <img src="./img/like.svg" width="15" />
-        <span class="mx-2 fs-6 text-black-50 fw-light">1</span>
-      </button>
     </div>
     <script>
+      const postData = {
+        content: `
+# 실수 / 고정소수점 / 부동소수점
+
+# 문제
+고정소수점, 부동소수점 모두 프로그래밍 계산시
+0.1 또는 1.2 등 대부분 실수는 나타낼 수 없고, 계산하면 오차값이 생긴다.
+
+![](https://velog.velcdn.com/images/jaybon/post/4e14af44-0d67-4dd6-950f-74e6719c31a4/image.png)
+
+# 해결법
+2진법의 근본적인 문제이기 때문에 속시원한 해결방법은 없다고 봐도 된다.
+그래서...
+
+## 반올림 처리
+반올림 처리이니 주의한다.
+
+## 라이브러리 사용
+### decimal
+정확한 계산을 해 준다.
+(물론 무한 순환되는 실수는 어쩔 수 없다.)
+
+문자열로 나오니 Number등으로 형변환 해주자.
+        `,
+      };
+
       // 마크다운 조회
       const viewer = toastui.Editor.factory({
         el: document.querySelector("#viewer"),
         viewer: true,
         height: "500px",
-        initialValue: "# 안녕하신가 \n > 네네",
+        initialValue: postData.content,
       });
     </script>
   </body>
