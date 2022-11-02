@@ -98,19 +98,18 @@
         content: editor.getMarkdown(),
       };
 
-      localStorage.setItem("tempData", JSON.stringify(tempData));
+      localStorage.setItem("tempUpdateData", JSON.stringify(tempData));
       alert("임시저장되었습니다.");
     }
 
     function tempCheck() {
-      const tempData = localStorage.getItem("tempData");
+      const tempData = localStorage.getItem("tempUpdateData");
       if (tempData != null) {
         if (confirm("임시저장된 글이 있습니다. 불러오시겠습니까?")) {
-          const tempData = JSON.parse(localStorage.getItem("tempData"));
           document.getElementById("title").value = tempData.title;
           editor.setMarkdown(tempData.content);
         } else {
-          localStorage.removeItem("tempData");
+          localStorage.removeItem("tempUpdateData");
         }
       }
     }
