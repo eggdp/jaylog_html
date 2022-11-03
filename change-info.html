@@ -40,7 +40,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
     <!-- MDB -->
-    <link rel="stylesheet" href="css/bootstrap-login-form.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-login-form.min.css" />
 
     <!-- 커스텀 CSS -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -84,14 +84,31 @@
             <div class="card shadow-2-strong" style="border-radius: 1rem">
               <div class="card-body p-5 text-center">
                 <h3 class="mb-3">내 정보 수정</h3>
-
+                <div class="d-flex justify-content-center">
+                  <span>
+                    <img
+                      id="userProfileImg"
+                      src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                      class="ratio ratio-1x1 rounded-circle"
+                      style="width: 100px; height: 100px"
+                      alt="profile"
+                    />
+                    <input
+                      id="userProfileImgInput"
+                      type="file"
+                      class="form-control mt-3 mb-3"
+                      style="width: 300px"
+                    />
+                  </span>
+                </div>
                 <div class="form-outline mb-4">
                   <input
                     type="text"
                     id="id"
                     class="form-control form-control-lg"
+                    disabled
                   />
-                  <label class="form-label" for="id">* 아이디</label>
+                  <label class="form-label" for="id">아이디</label>
                 </div>
 
                 <div class="row">
@@ -103,7 +120,7 @@
                         class="form-control form-control-lg"
                       />
                       <label class="form-label" for="typePasswordX-2">
-                        * 비밀번호
+                        변경할 비밀번호
                       </label>
                     </div>
                   </div>
@@ -111,11 +128,11 @@
                     <div class="form-outline mb-4">
                       <input
                         type="password"
-                        id="pw"
+                        id="pw2"
                         class="form-control form-control-lg"
                       />
                       <label class="form-label" for="typePasswordX-2">
-                        * 비밀번호 확인
+                        비밀번호 확인
                       </label>
                     </div>
                   </div>
@@ -130,8 +147,12 @@
                   <label class="form-label" for="simpleDesc">한 줄 소개</label>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block" type="button">
-                  회원가입
+                <button
+                  class="btn btn-primary btn-lg btn-block"
+                  type="button"
+                  onclick="updateUser()"
+                >
+                  정보 수정
                 </button>
               </div>
             </div>
@@ -145,6 +166,104 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript">
+    const setUser = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      const userList = getUserList();
+      const me = userList.find((tempUser) => tempUser.idx == loginUser.idx);
+
+      document.getElementById("id").value = me.id;
+      document.getElementById("userProfileImg").src = me.profileImg;
+      document.getElementById("simpleDesc").value = me.simpleDesc;
+    };
+
+    const validateFields = () => {
+      const pwElement = document.getElementById("pw");
+      const pw2Element = document.getElementById("pw2");
+      const simpleDescElement = document.getElementById("simpleDesc");
+      const userProfileImgElement = document.getElementById("userProfileImg");
+
+      if (pwElement.value != "" && pw2Element.value != "") {
+        if (pwElement.value !== pw2Element.value) {
+          alert("비밀번호가 일치하지 않습니다.");
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const getUserList = () => {
+      const userList = JSON.parse(localStorage.getItem("userList"));
+      if (userList == null) {
+        return [];
+      } else {
+        return userList;
+      }
+    };
+
+    const updateUser = () => {
+      if (!validateFields()) {
+        return;
+      }
+
+      const pwElement = document.querySelector("#pw");
+      const simpleDescElement = document.querySelector("#simpleDesc");
+      const userProfileImgElement = document.querySelector("#userProfileImg");
+
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      const userList = getUserList();
+
+      const me = userList.find((tempUser) => tempUser.idx == loginUser.idx);
+
+      const updateMe = {
+        ...me,
+        pw: pwElement.value == "" ? me.pw : pwElement.value,
+        simpleDesc: simpleDescElement.value,
+        profileImg: userProfileImgElement.src,
+      };
+
+      console.log(updateMe);
+
+      const userNumber = userList.findIndex(
+        (tempUser) => tempUser.idx === loginUser.idx
+      );
+
+      userList[userNumber] = updateMe;
+
+      localStorage.setItem("userList", JSON.stringify(userList));
+
+      alert("내 정보가 수정되었습니다.\n다시 로그인해주세요.");
+
+      localStorage.removeItem("loginUser");
+
+      location.replace("./login.html");
+    };
+
+    const setChangeProfileImg = () => {
+      const userProfileImgElement = document.getElementById("userProfileImg");
+      const userProfileImgInputElement = document.getElementById(
+        "userProfileImgInput"
+      );
+
+      userProfileImgInputElement.addEventListener("change", function () {
+        if (this.files && this.files[0]) {
+          const myFile = this.files[0];
+          const reader = new FileReader();
+
+          reader.addEventListener("load", function (e) {
+            userProfileImgElement.setAttribute("src", e.target.result);
+          });
+
+          reader.readAsDataURL(myFile);
+        }
+      });
+    };
+
+    const logout = () => {
+      localStorage.removeItem("loginUser");
+      location.replace("./login.html");
+    };
+
     const checkLoginAndSetNav = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       if (loginUser == null) {
@@ -188,7 +307,7 @@
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                <li><a class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
               </ul>
             </div>
           `;
@@ -197,5 +316,7 @@
   </script>
   <script defer>
     checkLoginAndSetNav();
+    setChangeProfileImg();
+    setUser();
   </script>
 </html>

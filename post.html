@@ -76,7 +76,7 @@
               id="userProfileImg"
               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               class="ratio ratio-1x1 rounded-circle me-2"
-              style="width: 20px"
+              style="width: 20px; height: 20px"
               alt="profile"
             />
             <strong id="userId"></strong>
@@ -140,20 +140,20 @@
       const likeList = JSON.parse(localStorage.getItem("likeList"));
 
       const post = getPost();
-      const user = getUser(post.userIdx);
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
 
-      if (post.userIdx === user.idx) {
+      if (post.userIdx === loginUser.idx) {
         alert("자신의 글은 좋아요를 누를 수 없습니다.");
         return;
       }
 
       const likeData = likeList.find(
         (tempLike) =>
-          tempLike.userIdx == user.idx && tempLike.postIdx == post.idx
+          tempLike.userIdx == loginUser.idx && tempLike.postIdx == post.idx
       );
 
       if (likeData == null) {
-        likeList.push({ userIdx: user.idx, postIdx: post.idx });
+        likeList.push({ userIdx: loginUser.idx, postIdx: post.idx });
         localStorage.setItem("likeList", JSON.stringify(likeList));
 
         document.getElementById("likeCount").innerHTML = likeList.filter(
@@ -223,6 +223,11 @@
       return user;
     };
 
+    const logout = () => {
+      localStorage.removeItem("loginUser");
+      location.replace("./login.html");
+    };
+
     const setNav = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       if (loginUser == null) {
@@ -273,7 +278,7 @@
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            <li><a class="dropdown-item" href="#" onclick = "logout()";>로그아웃</a></li>
           </ul>
         </div>
       `;

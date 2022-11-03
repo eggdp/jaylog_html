@@ -144,10 +144,13 @@
       const titleElement = document.getElementById("title");
       const content = toastuiEditor.getMarkdown();
 
-      const markdownRegex = /(\*|_|#|`|~|>|!|\[|\]|\(|\)|\{|\}|\||\\)/gi;
       const markdownImageRegex = /\[.*\]\((.*)\)/gi;
+      const markdownRegex = /(\*|_|#|`|~|>|!|\[|\]|\(|\)|\{|\}|\||\\)/gi;
 
-      const summary = content.replace(markdownRegex, "").substring(0, 151);
+      const summary = content
+        .replace(markdownImageRegex, "")
+        .replace(markdownRegex, "")
+        .substring(0, 151);
 
       const imageList = content.match(markdownImageRegex);
       const thumbnailMarkdown = imageList != null ? imageList[0] : null;

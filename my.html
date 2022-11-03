@@ -30,7 +30,7 @@
     <!-- favicon -->
     <link rel="icon" href="./img/jaylog.ico" type="image/x-icon" />
 
-    <title>마이페이지</title>
+    <title>내 제이로그</title>
   </head>
   <body class="bg-light">
     <div
@@ -65,7 +65,7 @@
               id="userProfileImg"
               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               class="ratio ratio-1x1 rounded-circle"
-              style="width: 100px"
+              style="width: 100px; height: 100px"
               alt="profile"
             />
           </div>
@@ -73,7 +73,7 @@
         <div class="col">
           <h2 id="userId">.</h2>
           <p id="userSimpleDesc"></p>
-          <a href="./change-info.html" style="color: #20c997">내 정보 수정</a>
+          <a href="./change-info.html" style="color: #20c997"> 내 정보 수정 </a>
         </div>
       </div>
       <hr class="border-3 border-top" />
@@ -168,6 +168,11 @@
       return cardDataList;
     };
 
+    const logout = () => {
+      localStorage.removeItem("loginUser");
+      location.replace("./login.html");
+    };
+
     function setMyPostCards() {
       const cardGroup = document.querySelector("#myPost");
       const cardDataList = getCardDataList(getPostList());
@@ -208,8 +213,8 @@
                 <div class="row">
                   <div class="col">
                     <div class="input-group">
-                      <img src="${item.user.profileImg}" width="25"
-                          class="ratio ratio-1x1 rounded-circle me-2" style="width:20px" alt="profile" />
+                      <img src="${item.user.profileImg}"
+                          class="ratio ratio-1x1 rounded-circle me-2" style="width:24px; height: 24px" alt="profile" />
                       <strong>${item.user.id}</strong>
                     </div>
                   </div>
@@ -273,8 +278,8 @@
                 <div class="row">
                   <div class="col">
                     <div class="input-group">
-                      <img src="${item.user.profileImg}" width="25"
-                          class="ratio ratio-1x1 rounded-circle me-2" style="width:20px" alt="profile" />
+                      <img src="${item.user.profileImg}"
+                          class="ratio ratio-1x1 rounded-circle me-2" style="width:24px; height: 24px" alt="profile" />
                       <strong>${item.user.id}</strong>
                     </div>
                   </div>
@@ -338,7 +343,7 @@
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                <li><a class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
               </ul>
             </div>
           `;
