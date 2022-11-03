@@ -85,27 +85,12 @@
           <span id="createDate" class="text-black-50 fw-light ms-3"></span>
         </div>
         <!-- 좋아요 버튼 -->
-        <button class="btn" onclick="clickLikeCount()">
+        <button id="likeButton" class="btn" onclick="clickLikeCount()">
           <img src="./img/like.svg" width="15" />
           <span id="likeCount" class="mx-2 fs-6 text-black-50 fw-light">0</span>
         </button>
         <!-- 수정 / 삭제 버튼 -->
-        <div>
-          <button
-            class="btn btn-outline-success"
-            type="button"
-            onclick="location.href=`./update-post.html?idx=${getPostIdx()}`"
-          >
-            수정
-          </button>
-          <button
-            class="btn btn-outline-danger"
-            type="button"
-            onclick="deletePost()"
-          >
-            삭제
-          </button>
-        </div>
+        <!-- <div id="updateDeleteButton"></div> -->
       </div>
       <!-- 본문 -->
       <div id="viewer" class="my-5"></div>
@@ -113,6 +98,12 @@
   </body>
   <script>
     const deletePost = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      if (loginUser.idx != getPost().userIdx) {
+        alert("권한이 없습니다.");
+        return;
+      }
+
       const checkDelete = prompt(`삭제하려면 '삭제'를 입력하세요.`);
       if (checkDelete === "삭제") {
         const postList = JSON.parse(localStorage.getItem("postList"));
@@ -284,9 +275,39 @@
       `;
       }
     };
+
+    const setUpdateDeleteButton = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      const post = getPost();
+
+      if (post.userIdx == loginUser.idx) {
+        document.getElementById("likeButton").insertAdjacentHTML(
+          "afterend",
+          `
+        <div>
+          <button
+            class="btn btn-outline-success"
+            type="button"
+            onclick="location.href='./update-post.html?idx=${getPostIdx()}'"
+          >
+            수정
+          </button>
+          <button
+            class="btn btn-outline-danger"
+            type="button"
+            onclick="deletePost()"
+          >
+            삭제
+          </button>
+        </div>
+        `
+        );
+      }
+    };
   </script>
   <script defer>
     setNav();
     setPost();
+    setUpdateDeleteButton();
   </script>
 </html>
