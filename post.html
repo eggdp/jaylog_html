@@ -117,7 +117,7 @@
       if (checkDelete === "삭제") {
         const postList = JSON.parse(localStorage.getItem("postList"));
 
-        postNumber = postList.findIndex(
+        const postNumber = postList.findIndex(
           (tempPost) => tempPost.idx === getPostIdx()
         );
 

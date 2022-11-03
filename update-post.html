@@ -66,6 +66,7 @@
         type="button"
         class="btn fw-bold text-white col-auto mx-2"
         style="background-color: #20c997"
+        onclick="updatePost()"
       >
         수정하기
       </button>
@@ -119,6 +120,73 @@
         location.replace("./index.html");
       }
       return user;
+    };
+
+    const validateFields = () => {
+      const titleElement = document.getElementById("title");
+      const content = window.toastuiEditor.getMarkdown();
+
+      if (titleElement.value == "") {
+        alert("제목을 입력하세요.");
+        return false;
+      }
+
+      if (content == "") {
+        alert("내용을 입력하세요.");
+        return false;
+      }
+
+      return true;
+    };
+
+    const updatePost = () => {
+      if (!validateFields()) {
+        return;
+      }
+
+      // if (localStorage.getItem("postList") === null) {
+      //   localStorage.setItem("postList", JSON.stringify([]));
+      // }
+
+      const postList = JSON.parse(localStorage.getItem("postList"));
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+
+      const postNumber = postList.findIndex(
+        (tempPost) => tempPost.idx === getPostIdx()
+      );
+
+      const titleElement = document.getElementById("title");
+      const content = toastuiEditor.getMarkdown();
+
+      const markdownRegex = /(\*|_|#|`|~|>|!|\[|\]|\(|\)|\{|\}|\||\\)/gi;
+      const markdownImageRegex = /\[.*\]\((.*)\)/gi;
+
+      const summary = content.replace(markdownRegex, "").substring(0, 151);
+
+      const imageList = content.match(markdownImageRegex);
+      const thumbnailMarkdown = imageList != null ? imageList[0] : null;
+
+      const thumbnail = thumbnailMarkdown
+        ? thumbnailMarkdown.substring(
+            thumbnailMarkdown.indexOf("](") + 2,
+            thumbnailMarkdown.length - 1
+          )
+        : null;
+
+      postList[postNumber] = {
+        ...postList[postNumber],
+        title: titleElement.value,
+        content: content,
+        summary: summary,
+        thumbnail: thumbnail,
+        updateDate: new Date().toJSON(),
+      };
+
+      localStorage.setItem("postList", JSON.stringify(postList));
+
+      alert("수정되었습니다.");
+
+      location.replace(`./post.html?idx=${getPostIdx()}`);
     };
 
     const checkLogin = () => {

@@ -69,7 +69,7 @@
         type="button"
         class="btn fw-bold text-white col-auto mx-2"
         style="background-color: #20c997"
-        onclick="savePost()"
+        onclick="insertPost()"
       >
         저장하기
       </button>
@@ -129,7 +129,7 @@
       return true;
     };
 
-    const savePost = () => {
+    const insertPost = () => {
       if (!validateFields()) {
         return;
       }
