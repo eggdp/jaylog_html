@@ -65,8 +65,8 @@
     </div>
   </body>
   <script>
-    const getCardDataList = () => {
-      const postList = getPostList().sort((a, b) => {
+    const getCardDataList = (tempPostList) => {
+      const postList = tempPostList.sort((a, b) => {
         return b.idx - a.idx;
       });
       const userList = getUserList();
@@ -129,7 +129,7 @@
 
     function setCards() {
       const cardGroup = document.querySelector("#cardGroup");
-      for (const item of getCardDataList()) {
+      for (const item of getCardDataList(getPostList())) {
         cardGroup.insertAdjacentHTML(
           "beforeend",
           `

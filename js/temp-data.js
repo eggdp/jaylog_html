@@ -103,3 +103,86 @@ const postData = {
 문자열로 나오니 Number등으로 형변환 해주자.
     `,
 };
+
+const myPostList = [
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+];
+
+const likePostList = [
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/velopert/post/043d71d9-5a66-4795-b960-ba7ff9384947/image.png",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/lhr4884/post/8f8aba67-0e4d-4a7b-a73f-d09a8b69177d/image.png",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: ` 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/bepyan/post/f6db6cf8-f069-4a37-808c-4963049a584e/image.gif",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요? xJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배워야 할 이유를 납득하는 것 부터 어려울걸요?`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+  {
+    thumbnail:
+      "https://velog.velcdn.com/images/purplew/post/85f27743-0b86-42f8-86cf-c1fe3d4c0f31/image.png",
+    title: `Rxjs 한번 배워보실래요?`,
+    summary: `TxJs를 대체 할 만한게 있을까요?" 크루: "솔직히 비동기나 시간을 다루는 데에는 Rxjs를 대체 할 만한게 없긴 하죠. 진짜 좋다고 생각해요. 배우기 어려워서 그렇지. 웬만한 개발자들은 배`,
+    updateDate: "2021-10-10",
+    writerProfileImage:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    writer: "jaybon",
+    likeCount: 10,
+  },
+];
