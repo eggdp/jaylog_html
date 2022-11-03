@@ -37,7 +37,7 @@
     <!-- favicon -->
     <link rel="icon" href="./img/jaylog.ico" type="image/x-icon" />
 
-    <title>새글작성</title>
+    <title>글 수정</title>
   </head>
   <body>
     <div class="row">
@@ -47,80 +47,79 @@
           class="border-0 w-100 fs-1 mt-3 mb-3"
           type="text"
           placeholder="제목을 입력하세요"
-          onkeyup="setMarkdownTitle()"
         />
       </div>
     </div>
     <div id="editor"></div>
     <div class="fixed-bottom p-3 row bg-white shadow-lg">
       <span class="col me-auto">
-        <a href="./index.html" class="text-decoration-none text-dark">
+        <a
+          href="#"
+          class="text-decoration-none text-dark"
+          onclick="location.replace(`./post.html?idx=${getPostIdx()}`)"
+        >
           <img src="./img/exit.svg" alt="exit" />
           <span class="m-2">나가기</span>
         </a>
       </span>
       <button
         type="button"
-        class="btn btn-light fw-bold col-auto mx-2"
-        onclick="tempSave()"
-      >
-        임시저장
-      </button>
-      <button
-        type="button"
         class="btn fw-bold text-white col-auto mx-2"
         style="background-color: #20c997"
       >
-        저장하기
+        수정하기
       </button>
     </div>
   </body>
   <script>
-    const Editor = toastui.Editor;
+    const setPost = () => {
+      const post = getPost();
+      document.getElementById("title").value = post.title;
+      window.toastuiEditor.setMarkdown(post.content);
+    };
 
-    const editor = new Editor({
-      el: document.querySelector("#editor"),
-      height: `${window.innerHeight - 180}px`,
-      initialEditType: "markdown",
-      previewStyle: "vertical",
-    });
-  </script>
-  <script>
-    window.onload = () => {
-      checkLogin();
-      tempCheck();
+    const setEditor = () => {
+      window.toastuiEditor = new toastui.Editor({
+        el: document.querySelector("#editor"),
+        height: `${window.innerHeight - 180}px`,
+        initialEditType: "markdown",
+        previewStyle: "vertical",
+      });
     };
 
     window.onresize = function () {
-      editor.setHeight(`${window.innerHeight - 180}px`);
+      window.toastuiEditor.setHeight(`${window.innerHeight - 180}px`);
     };
 
-    function checkImage(input) {
-      let regex = /!\[]\(.*\)/i;
-      return regex.test(input);
-    }
-
-    function tempSave() {
-      const tempData = {
-        title: document.getElementById("title").value,
-        content: editor.getMarkdown(),
-      };
-
-      localStorage.setItem("tempUpdateData", JSON.stringify(tempData));
-      alert("임시저장되었습니다.");
-    }
-
-    function tempCheck() {
-      const tempData = localStorage.getItem("tempUpdateData");
-      if (tempData != null) {
-        if (confirm("임시저장된 글이 있습니다. 불러오시겠습니까?")) {
-          document.getElementById("title").value = tempData.title;
-          editor.setMarkdown(tempData.content);
-        } else {
-          localStorage.removeItem("tempUpdateData");
-        }
+    const getPost = () => {
+      const postList = JSON.parse(localStorage.getItem("postList"));
+      const post = postList.find(
+        (tempPost) =>
+          tempPost.idx == getPostIdx() && tempPost.deleteDate == null
+      );
+      if (post == null) {
+        alert("없는 포스트거나 삭제된 포스트입니다.");
+        location.replace("./index.html");
       }
-    }
+      return post;
+    };
+
+    const getPostIdx = () => {
+      const postIdx = new URLSearchParams(location.search).get("idx");
+      return Number(postIdx);
+    };
+
+    const getUser = (userIdx) => {
+      const userList = JSON.parse(localStorage.getItem("userList"));
+      const user = userList.find(
+        (tempUser) => tempUser.idx == userIdx && tempUser.deleteDate == null
+      );
+      if (user == null) {
+        alert("없는 유저이거나 탈퇴한 유저입니다.");
+        location.replace("./index.html");
+      }
+      return user;
+    };
 
     const checkLogin = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
@@ -129,9 +128,10 @@
         location.replace("./login.html");
       }
     };
-
-    // if (checkImage(markdownEditorElement.value)) {
-    //   alert("오우");
-    // }
+  </script>
+  <script defer>
+    checkLogin();
+    setEditor();
+    setPost();
   </script>
 </html>

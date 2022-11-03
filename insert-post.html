@@ -37,7 +37,7 @@
     <!-- favicon -->
     <link rel="icon" href="./img/jaylog.ico" type="image/x-icon" />
 
-    <title>새글작성</title>
+    <title>새 글 작성</title>
   </head>
   <body>
     <div class="row">
@@ -76,11 +76,6 @@
     </div>
   </body>
   <script>
-    window.onload = () => {
-      checkLogin();
-      tempPostCheck();
-    };
-
     window.onresize = function () {
       toastuiEditor.setHeight(`${window.innerHeight - 180}px`);
     };
@@ -193,5 +188,10 @@
         location.replace("./login.html");
       }
     };
+  </script>
+  <script defer>
+    checkLogin();
+    setEditor();
+    tempPostCheck();
   </script>
 </html>

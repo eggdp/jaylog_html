@@ -65,11 +65,6 @@
     </div>
   </body>
   <script>
-    window.onload = () => {
-      setNav();
-      setCards();
-    };
-
     const getCardDataList = () => {
       const postList = getPostList().sort((a, b) => {
         return b.idx - a.idx;
@@ -243,5 +238,9 @@
         `;
       }
     };
+  </script>
+  <script defer>
+    setNav();
+    setCards();
   </script>
 </html>

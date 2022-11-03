@@ -74,7 +74,7 @@
           <span>
             <img
               id="userProfileImg"
-              src=""
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               class="ratio ratio-1x1 rounded-circle me-2"
               style="width: 20px"
               alt="profile"
@@ -94,14 +94,14 @@
           <button
             class="btn btn-outline-success"
             type="button"
-            onclick="location.href=`./update-post.html`"
+            onclick="location.href=`./update-post.html?idx=${getPostIdx()}`"
           >
             수정
           </button>
           <button
             class="btn btn-outline-danger"
             type="button"
-            onclick="prompt(`삭제하려면 '삭제'를 입력하세요.`) === '삭제' ? alert('삭제되었습니다.') : alert('삭제가 취소되었습니다.')"
+            onclick="deletePost()"
           >
             삭제
           </button>
@@ -110,135 +110,173 @@
       <!-- 본문 -->
       <div id="viewer" class="my-5"></div>
     </div>
-    <script>
-      window.onload = () => {
-        setNav();
-        setPost();
-      };
+  </body>
+  <script>
+    const deletePost = () => {
+      const checkDelete = prompt(`삭제하려면 '삭제'를 입력하세요.`);
+      if (checkDelete === "삭제") {
+        const postList = JSON.parse(localStorage.getItem("postList"));
 
-      const clickLikeCount = () => {
-        if (localStorage.getItem("likeList") === null) {
-          localStorage.setItem("likeList", JSON.stringify([]));
-        }
-
-        const likeList = JSON.parse(localStorage.getItem("likeList"));
-
-        const post = getPost();
-        const user = getUser(post.userIdx);
-
-        const likeData = likeList.find(
-          (tempLike) =>
-            tempLike.userIdx == user.idx && tempLike.postIdx == post.idx
+        postNumber = postList.findIndex(
+          (tempPost) => tempPost.idx === getPostIdx()
         );
 
-        if (likeData == null) {
-          likeList.push({ userIdx: user.idx, postIdx: post.idx });
-          localStorage.setItem("likeList", JSON.stringify(likeList));
+        postList[postNumber].deleteDate = new Date().toJSON();
 
-          document.getElementById("likeCount").innerHTML = likeList.filter(
-            (tempLike) => tempLike.postIdx == post.idx
-          ).length;
-        } else {
-          alert("이미 좋아요를 누른 글입니다.");
-        }
-      };
+        localStorage.setItem("postList", JSON.stringify(postList));
 
-      const setPost = () => {
-        const post = getPost();
-        const user = getUser(post.userIdx);
-        const likeList = JSON.parse(localStorage.getItem("likeList"));
+        alert("삭제되었습니다.");
+        location.replace("./index.html");
+      } else {
+        alert("삭제가 취소되었습니다.");
+      }
+    };
 
-        document.getElementById("title").innerHTML = post.title;
-        document.getElementById("userProfileImg").src = user.profileImg;
-        document.getElementById("userId").innerHTML = user.id;
-        document.getElementById("createDate").innerHTML =
-          post.createDate.split("T")[0];
+    const clickLikeCount = () => {
+      if (localStorage.getItem("likeList") === null) {
+        localStorage.setItem("likeList", JSON.stringify([]));
+      }
+
+      const likeList = JSON.parse(localStorage.getItem("likeList"));
+
+      const post = getPost();
+      const user = getUser(post.userIdx);
+
+      const likeData = likeList.find(
+        (tempLike) =>
+          tempLike.userIdx == user.idx && tempLike.postIdx == post.idx
+      );
+
+      if (likeData == null) {
+        likeList.push({ userIdx: user.idx, postIdx: post.idx });
+        localStorage.setItem("likeList", JSON.stringify(likeList));
+
         document.getElementById("likeCount").innerHTML = likeList.filter(
           (tempLike) => tempLike.postIdx == post.idx
         ).length;
+      } else {
+        alert("이미 좋아요를 누른 글입니다.");
+      }
+    };
 
-        // 마크다운 조회
-        window.viewer = toastui.Editor.factory({
-          el: document.querySelector("#viewer"),
-          viewer: true,
-          height: "500px",
-          initialValue: post.content,
-        });
-      };
+    const setPost = () => {
+      const post = getPost();
 
-      const getPost = () => {
-        const postList = JSON.parse(localStorage.getItem("postList"));
-        const post = postList.find((post) => post.idx == getPostIdx());
-        return post;
-      };
+      if (post.deleteDate !== null) {
+        alert("삭제된 글입니다.");
+        location.replace("./index.html");
+      }
 
-      const getPostIdx = () => {
-        const postIdx = new URLSearchParams(location.search).get("idx");
-        return Number(postIdx);
-      };
+      const user = getUser(post.userIdx);
+      const likeList = JSON.parse(localStorage.getItem("likeList"));
 
-      const getUser = (idx) => {
-        const userList = JSON.parse(localStorage.getItem("userList"));
-        const user = userList.find((user) => user.idx == idx);
-        return user;
-      };
+      document.getElementById("title").innerHTML = post.title;
+      document.getElementById("userProfileImg").src = user.profileImg;
+      document.getElementById("userId").innerHTML = user.id;
+      document.getElementById("createDate").innerHTML =
+        post.createDate.split("T")[0];
+      document.getElementById("likeCount").innerHTML = likeList.filter(
+        (tempLike) => tempLike.postIdx == post.idx
+      ).length;
 
-      const setNav = () => {
-        const loginUser = JSON.parse(localStorage.getItem("loginUser"));
-        if (loginUser == null) {
-          document.getElementById("insertPost").innerHTML = `
-          <button
-            class="rounded-pill btn-dark px-3"
-            type="button"
-            onclick="location.href='./login.html'"
-          >
-            로그인
-          </button>
-        `;
-        } else {
-          document.getElementById("insertPost").innerHTML = `
-          <button
-            class="rounded-pill btn-dark px-3"
-            type="button"
-            onclick="location.href='./insert-post.html'"
-          >
-            새 글 작성
-          </button>
-        `;
+      // 마크다운 조회
+      window.viewer = toastui.Editor.factory({
+        el: document.querySelector("#viewer"),
+        viewer: true,
+        height: "500px",
+        initialValue: post.content,
+      });
+    };
 
-          document.getElementById("profile").innerHTML = `
-          <div class="row align-content-center ms-1">
-            <a href="#" role="button" data-bs-toggle="dropdown">
-              <img src="./img/user.png" width="25" />
-            </a>
-            <ul class="dropdown-menu">
-              <li class="d-inline d-md-none">
-                <form class="d-flex ms-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="search"
-                  />
-                  <button class="btn" type="button">
-                    <img src="./img/search.png" width="20" />
-                  </button>
-                </form>
-              </li>
-              <li class="d-inline d-md-none">
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-            </ul>
-          </div>
-        `;
-        }
-      };
-    </script>
-  </body>
+    const getPost = () => {
+      const postList = JSON.parse(localStorage.getItem("postList"));
+      const post = postList.find(
+        (tempPost) =>
+          tempPost.idx == getPostIdx() && tempPost.deleteDate == null
+      );
+      if (post == null) {
+        alert("없는 포스트거나 삭제된 포스트입니다.");
+        location.replace("./index.html");
+      }
+      return post;
+    };
+
+    const getPostIdx = () => {
+      const postIdx = new URLSearchParams(location.search).get("idx");
+      return Number(postIdx);
+    };
+
+    const getUser = (userIdx) => {
+      const userList = JSON.parse(localStorage.getItem("userList"));
+      const user = userList.find(
+        (tempUser) => tempUser.idx == userIdx && tempUser.deleteDate == null
+      );
+      if (user == null) {
+        alert("없는 유저이거나 탈퇴한 유저입니다.");
+        location.replace("./index.html");
+      }
+      return user;
+    };
+
+    const setNav = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      if (loginUser == null) {
+        document.getElementById("insertPost").innerHTML = `
+        <button
+          class="rounded-pill btn-dark px-3"
+          type="button"
+          onclick="location.href='./login.html'"
+        >
+          로그인
+        </button>
+      `;
+      } else {
+        document.getElementById("insertPost").innerHTML = `
+        <button
+          class="rounded-pill btn-dark px-3"
+          type="button"
+          onclick="location.href='./insert-post.html'"
+        >
+          새 글 작성
+        </button>
+      `;
+
+        document.getElementById("profile").innerHTML = `
+        <div class="row align-content-center ms-1">
+          <a href="#" role="button" data-bs-toggle="dropdown">
+            <img src="./img/user.png" width="25" />
+          </a>
+          <ul class="dropdown-menu">
+            <li class="d-inline d-md-none">
+              <form class="d-flex ms-1">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="search"
+                />
+                <button class="btn" type="button">
+                  <img src="./img/search.png" width="20" />
+                </button>
+              </form>
+            </li>
+            <li class="d-inline d-md-none">
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="#">로그아웃</a></li>
+          </ul>
+        </div>
+      `;
+      }
+    };
+  </script>
+  <script defer>
+    setNav();
+    setPost();
+  </script>
 </html>

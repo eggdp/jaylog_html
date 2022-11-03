@@ -140,64 +140,62 @@
       </div>
     </section>
     <!-- End your project here-->
-
-    <!-- MDB -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
-    <!-- Custom scripts -->
-    <script type="text/javascript">
-      window.onload = () => {
-        checkLoginAndSetNav();
-      };
-
-      const checkLoginAndSetNav = () => {
-        const loginUser = JSON.parse(localStorage.getItem("loginUser"));
-        if (loginUser == null) {
-          alert("로그인이 필요합니다.");
-          location.replace("./login.html");
-        } else {
-          document.getElementById("insertPost").innerHTML = `
-          <button
-            class="rounded-pill btn-dark px-3"
-            type="button"
-            onclick="location.href='./insert-post.html'"
-          >
-            새 글 작성
-          </button>
-        `;
-
-          document.getElementById("profile").innerHTML = `
-          <div class="row align-content-center ms-1">
-            <a href="#" role="button" data-bs-toggle="dropdown">
-              <img src="./img/user.png" width="25" />
-            </a>
-            <ul class="dropdown-menu">
-              <li class="d-inline d-md-none">
-                <form class="d-flex ms-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="search"
-                  />
-                  <button class="btn" type="button">
-                    <img src="./img/search.png" width="20" />
-                  </button>
-                </form>
-              </li>
-              <li class="d-inline d-md-none">
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-            </ul>
-          </div>
-        `;
-        }
-      };
-    </script>
   </body>
+  <!-- MDB -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript">
+    const checkLoginAndSetNav = () => {
+      const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+      if (loginUser == null) {
+        alert("로그인이 필요합니다.");
+        location.replace("./login.html");
+      } else {
+        document.getElementById("insertPost").innerHTML = `
+            <button
+              class="rounded-pill btn-dark px-3"
+              type="button"
+              onclick="location.href='./insert-post.html'"
+            >
+              새 글 작성
+            </button>
+          `;
+
+        document.getElementById("profile").innerHTML = `
+            <div class="row align-content-center ms-1">
+              <a href="#" role="button" data-bs-toggle="dropdown">
+                <img src="./img/user.png" width="25" />
+              </a>
+              <ul class="dropdown-menu">
+                <li class="d-inline d-md-none">
+                  <form class="d-flex ms-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="search"
+                    />
+                    <button class="btn" type="button">
+                      <img src="./img/search.png" width="20" />
+                    </button>
+                  </form>
+                </li>
+                <li class="d-inline d-md-none">
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./my.html"> 내 제이로그 </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+              </ul>
+            </div>
+          `;
+      }
+    };
+  </script>
+  <script defer>
+    checkLoginAndSetNav();
+  </script>
 </html>
