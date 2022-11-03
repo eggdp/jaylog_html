@@ -142,6 +142,11 @@
       const post = getPost();
       const user = getUser(post.userIdx);
 
+      if (post.userIdx === user.idx) {
+        alert("자신의 글은 좋아요를 누를 수 없습니다.");
+        return;
+      }
+
       const likeData = likeList.find(
         (tempLike) =>
           tempLike.userIdx == user.idx && tempLike.postIdx == post.idx
