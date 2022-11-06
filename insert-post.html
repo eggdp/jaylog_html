@@ -76,10 +76,12 @@
     </div>
   </body>
   <script>
-    window.onresize = function () {
+    // 화면이 재조정 될 때 실행할 함수
+    window.onresize = () => {
       toastuiEditor.setHeight(`${window.innerHeight - 180}px`);
     };
 
+    // 토스트 에디터 생성
     const setEditor = () => {
       window.toastuiEditor = new toastui.Editor({
         el: document.querySelector("#editor"),
@@ -89,7 +91,8 @@
       });
     };
 
-    function tempSave() {
+    // 임시저장 함수
+    const tempSave = () => {
       const tempPost = {
         title: document.getElementById("title").value,
         content: toastuiEditor.getMarkdown(),
@@ -97,9 +100,10 @@
 
       localStorage.setItem("tempPost", JSON.stringify(tempPost));
       alert("임시저장되었습니다.");
-    }
+    };
 
-    function tempPostCheck() {
+    // 글작성 페이지 이동시 임시저장된 글이 있으면 불러오기
+    const tempPostCheck = () => {
       const tempPost = localStorage.getItem("tempPost");
       if (tempPost != null) {
         if (confirm("임시저장된 글이 있습니다. 불러오시겠습니까?")) {
@@ -110,8 +114,9 @@
           localStorage.removeItem("tempPost");
         }
       }
-    }
+    };
 
+    // 글 저장시 유효성 검사 함수
     const validateFields = () => {
       const titleElement = document.getElementById("title");
       const content = toastuiEditor.getMarkdown();
@@ -129,6 +134,7 @@
       return true;
     };
 
+    // 글 저장 함수
     const insertPost = () => {
       if (!validateFields()) {
         return;
@@ -144,6 +150,7 @@
       const titleElement = document.getElementById("title");
       const content = toastuiEditor.getMarkdown();
 
+      // 정규표현식을 이용한 태그 제거
       const markdownImageRegex = /\[.*\]\((.*)\)/gi;
       const markdownRegex = /(\*|_|#|`|~|>|!|\[|\]|\(|\)|\{|\}|\||\\)/gi;
 
@@ -162,6 +169,7 @@
           )
         : null;
 
+      // post 객체 생성
       const post = {
         idx: postList.length + 1,
         title: titleElement.value,
@@ -184,6 +192,8 @@
       location.replace("./index.html");
     };
 
+    // 로그인 되었는지 체크
+    // 실제 서비스에서는 서버에서 체크함
     const checkLogin = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       if (loginUser == null) {
@@ -193,6 +203,7 @@
     };
   </script>
   <script defer>
+    // 페이지 로드시 실행
     checkLogin();
     setEditor();
     tempPostCheck();
