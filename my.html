@@ -92,6 +92,7 @@
     </div>
   </body>
   <script>
+    // 프로필 세팅 함수
     const setProfile = () => {
       const userIdElement = document.getElementById("userId");
       const userProfileImgElement = document.getElementById("userProfileImg");
@@ -173,7 +174,8 @@
       location.replace("./login.html");
     };
 
-    function setMyPostCards() {
+    // 내가 쓴글 세팅 함수
+    const setMyPostCards = () => {
       const cardGroup = document.querySelector("#myPost");
       const cardDataList = getCardDataList(getPostList());
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
@@ -233,8 +235,10 @@
             `
         );
       }
-    }
-    function setLikePostCards() {
+    };
+
+    // 내가 좋아요 한 글 세팅 함수
+    const setLikePostCards = () => {
       const cardGroup = document.querySelector("#likePost");
       const cardDataList = getCardDataList(getPostList());
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
@@ -298,8 +302,9 @@
             `
         );
       }
-    }
+    };
 
+    // 로그인 체킹 및 네비게이션 세팅 함수
     const checkLoginAndSetNav = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       if (loginUser == null) {
