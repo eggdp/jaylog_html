@@ -166,6 +166,7 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript">
+    // 유저 정보 세팅 함수
     const setUser = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       const userList = getUserList();
@@ -176,6 +177,7 @@
       document.getElementById("simpleDesc").value = me.simpleDesc;
     };
 
+    // 수정 전 유효성 검사
     const validateFields = () => {
       const pwElement = document.getElementById("pw");
       const pw2Element = document.getElementById("pw2");
@@ -201,6 +203,7 @@
       }
     };
 
+    // 유저 정보 수정 함수
     const updateUser = () => {
       if (!validateFields()) {
         return;

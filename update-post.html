@@ -73,12 +73,14 @@
     </div>
   </body>
   <script>
+    // 에디터에 글 내용 입력
     const setPost = () => {
       const post = getPost();
       document.getElementById("title").value = post.title;
       window.toastuiEditor.setMarkdown(post.content);
     };
 
+    // 에디터 세팅 함수
     const setEditor = () => {
       window.toastuiEditor = new toastui.Editor({
         el: document.querySelector("#editor"),
@@ -88,6 +90,7 @@
       });
     };
 
+    // 화면이 재조정되면 에디터의 높이를 재조정
     window.onresize = function () {
       window.toastuiEditor.setHeight(`${window.innerHeight - 180}px`);
     };
