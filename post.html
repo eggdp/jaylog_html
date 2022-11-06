@@ -97,14 +97,21 @@
     </div>
   </body>
   <script>
+    // 글삭제 함수
     const deletePost = () => {
+      // 로컬스토리지(가짜서버)에서 로그인한 유저를 가져옴
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+
+      // 글을 쓴 유저가 아니면 권한이 없다는 alert창을 띄움
       if (loginUser.idx != getPost().userIdx) {
         alert("권한이 없습니다.");
         return;
       }
 
+      // 실수로 삭제버튼을 눌렀을 경우를 대비해 한번 더 확인하는 prompt창을 띄움
       const checkDelete = prompt(`삭제하려면 '삭제'를 입력하세요.`);
+
+      // prompt창에 '삭제'를 입력하면 로컬스토리지(가짜서버)에서 해당 글을 삭제함
       if (checkDelete === "삭제") {
         const postList = JSON.parse(localStorage.getItem("postList"));
 
@@ -123,7 +130,9 @@
       }
     };
 
+    // 좋아요 버튼 클릭
     const clickLikeCount = () => {
+      // 로컬스토리지(가짜서버)에서 likeList를 가져옴
       if (localStorage.getItem("likeList") === null) {
         localStorage.setItem("likeList", JSON.stringify([]));
       }
@@ -133,6 +142,7 @@
       const post = getPost();
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
 
+      // 글쓴이와 로그인한 유저가 같으면 좋아요를 누를 수 없음
       if (post.userIdx === loginUser.idx) {
         alert("자신의 글은 좋아요를 누를 수 없습니다.");
         return;
@@ -155,6 +165,7 @@
       }
     };
 
+    // 글 내용을 채워넣는 함수
     const setPost = () => {
       const post = getPost();
 
@@ -176,6 +187,7 @@
       ).length;
 
       // 마크다운 조회
+      // window에 viewer라는 이름의 객체를 만들어서 마크다운을 출력함
       window.viewer = toastui.Editor.factory({
         el: document.querySelector("#viewer"),
         viewer: true,
@@ -184,6 +196,7 @@
       });
     };
 
+    // 로컬스토리지(가짜서버)에서 post를 가져옴
     const getPost = () => {
       const postList = JSON.parse(localStorage.getItem("postList"));
       const post = postList.find(
@@ -197,11 +210,13 @@
       return post;
     };
 
+    // 로컬스토리지(가짜서버)에서 postIdx를 가져옴
     const getPostIdx = () => {
       const postIdx = new URLSearchParams(location.search).get("idx");
       return Number(postIdx);
     };
 
+    // 로컬스토리지(가짜서버)에서 유저번호로 user를 가져옴
     const getUser = (userIdx) => {
       const userList = JSON.parse(localStorage.getItem("userList"));
       const user = userList.find(
@@ -276,6 +291,7 @@
       }
     };
 
+    // update delete버튼을 만드는 함수
     const setUpdateDeleteButton = () => {
       const loginUser = JSON.parse(localStorage.getItem("loginUser"));
       const post = getPost();
@@ -306,6 +322,7 @@
     };
   </script>
   <script defer>
+    // 글 상세페이지 로드시 실행
     setNav();
     setPost();
     setUpdateDeleteButton();
