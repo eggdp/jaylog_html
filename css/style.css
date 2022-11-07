@@ -27,10 +27,11 @@ body > div:first-child {
   height: 100px;
 }
 
-#joinPage body,
-#loginPage body {
+/* #joinPage body,
+#loginPage body,
+#changeInfoPage body {
   background-color: #508bfc;
-}
+} */
 
 .jaybon-one-line {
   overflow: hidden;
