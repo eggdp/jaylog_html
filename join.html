@@ -136,6 +136,19 @@
       const pwElement = document.getElementById("pw");
       const simpleDescElement = document.getElementById("simpleDesc");
 
+      // 유저 정보를 객체로 만듬
+      const user = {
+        idx: userList.length + 1,
+        id: idElement.value,
+        pw: pwElement.value,
+        simpleDesc: simpleDescElement.value,
+        profileImg:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        createDate: new Date().toJSON(),
+        updateDate: new Date().toJSON(),
+        deleteDate: null,
+      };
+
       // 서버와 통신을 가정
       // 로컬 스토리지에서 유저 리스트를 가져옴
       if (localStorage.getItem("userList") === null) {
@@ -149,19 +162,6 @@
         idElement.focus();
         return;
       }
-
-      // 유저 정보를 객체로 만듬
-      const user = {
-        idx: userList.length + 1,
-        id: idElement.value,
-        pw: pwElement.value,
-        simpleDesc: simpleDescElement.value,
-        profileImg:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        createDate: new Date().toJSON(),
-        updateDate: new Date().toJSON(),
-        deleteDate: null,
-      };
 
       // 유저 리스트에 유저 정보를 추가
       userList.push(user);
